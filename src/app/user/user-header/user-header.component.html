@@ -1,0 +1,17 @@
+<header class="header">
+  <div class="header__left">
+    <a href="" class="header__brand">Phong Vu.</a>
+    <form action="" class="header__form">
+      <input type="text" class="form__input" placeholder="Nhập từ khóa cần tìm..."/>
+      <button class="form__button">
+        <fa-icon [icon]="searchIcon"></fa-icon>
+      </button>
+    </form>
+  </div>
+  <div class="header__right">
+    <button class="icon__button" *ngFor="let icon of iconsArray">
+      <fa-icon [icon]="icon.name"></fa-icon>
+      <span>{{icon.content}}</span>
+    </button>
+  </div>
+</header>

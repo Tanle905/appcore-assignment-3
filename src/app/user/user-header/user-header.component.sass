@@ -1,0 +1,70 @@
+$lighter-gray:#e5e7eb
+$light-gray: #d1d5db
+$gray: #6b7280
+$blue:#1d4ed8
+$light-blue:#2563eb
+
+
+
+.header
+    padding: 10px 0px
+    display: flex
+    justify-content: space-evenly
+.header__left
+    display: flex
+    margin: auto 0px
+    width: 55%
+.header__left
+    .header__brand
+        width: 30%
+        font-size: 2rem
+        font-weight: bold
+        text-decoration: none
+        color: black
+    .header__form
+        display: flex
+        align-content: center
+        width: 70%
+        padding: 1px
+        border: 1px solid $light-gray
+        background-color: $lighter-gray
+        border-radius: 7px
+    .header__form
+        .form__input
+            background-color: $lighter-gray
+            border: none
+            &:focus
+                outline: none
+            width: 90%
+        .form__button
+            width: 10%
+            background-color: $blue
+            color: white
+            border: none
+            border-radius: 7px
+.header__right
+    width: 45%
+    display: flex
+    justify-content: space-evenly
+.header__right
+    .icon__button
+        width: 70%
+        border: none
+        margin: 0px 5px
+        padding: 5px
+        background-color: transparent
+        cursor: pointer
+        display: flex
+        flex-direction: column
+        color: $gray
+        &:hover
+            color: $blue
+    .icon__button
+        fa-icon
+            margin: 0px auto
+            font-size: 2rem
+        span
+            margin: 0px auto
+            font-weight: bold
+        
+    
