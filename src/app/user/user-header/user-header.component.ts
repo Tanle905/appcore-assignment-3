@@ -15,12 +15,12 @@ import {
   styleUrls: ['./user-header.component.sass'],
 })
 export class UserHeaderComponent implements OnInit {
-  iconsArray: {name: IconDefinition, content: string}[] = [
-    { name: faTag, content: 'Khuyến mãi' },
-    { name: faClipboardList, content: 'Đơn hàng' },
-    { name: faUser, content: 'Đăng nhập' },
-    { name: faBell, content: 'Thông báo' },
-    { name: faCartShopping, content: 'Giỏ hàng' },
+  iconsArray: { name: IconDefinition; content: string; link: string }[] = [
+    { name: faTag, content: 'Khuyến mãi', link: '' },
+    { name: faClipboardList, content: 'Đơn hàng', link: '' },
+    { name: faUser, content: 'Đăng nhập', link: '/login' },
+    { name: faBell, content: 'Thông báo', link: '' },
+    { name: faCartShopping, content: 'Giỏ hàng', link: '' },
   ];
   searchIcon = faSearch;
   constructor() {}
