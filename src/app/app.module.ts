@@ -11,7 +11,9 @@ import { UserFooterComponent } from './user/user-footer/user-footer.component';
 import { MainPageCategoryComponent } from './user/user-main-page/main-page-category/main-page-category.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MainPageProductComponent } from './user/user-main-page/main-page-product/main-page-product.component';
-import { UserLoginComponent } from './user/user-login/user-login.component';
+import { UserAuthComponent } from './user/user-auth/user-auth.component';
+import { FormsModule } from '@angular/forms';
+import { HeaderProfileComponent } from './user/user-header/header-profile/header-profile.component';
 
 
 @NgModule({
@@ -23,13 +25,15 @@ import { UserLoginComponent } from './user/user-login/user-login.component';
     UserFooterComponent,
     MainPageCategoryComponent,
     MainPageProductComponent,
-    UserLoginComponent
+    UserAuthComponent,
+    HeaderProfileComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FontAwesomeModule,
     HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

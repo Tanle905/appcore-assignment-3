@@ -8,6 +8,8 @@ import {
   faUser,
   IconDefinition,
 } from '@fortawesome/free-solid-svg-icons';
+import { UserProfile } from 'src/app/models/user-profile.model';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-user-header',
@@ -23,7 +25,17 @@ export class UserHeaderComponent implements OnInit {
     { name: faCartShopping, content: 'Giỏ hàng', link: '' },
   ];
   searchIcon = faSearch;
-  constructor() {}
 
-  ngOnInit(): void {}
+  userData: UserProfile | undefined;
+  constructor(private userService: UserService) {}
+
+  ngOnInit(): void {
+    this.userService
+      .getOwnProfile(localStorage.getItem('token'))
+      .subscribe((data: any) => {
+        this.userData = data.data;
+        this.iconsArray[2].content =
+          this.userData?.firstName || '';
+      });
+  }
 }

@@ -1,0 +1,44 @@
+<section class="auth">
+  <form *ngIf="!isLoading; else Loading" class="auth__form" #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
+    <div>
+      <label>Email:</label>
+      <input name="username" type="text" ngModel />
+    </div>
+    <div>
+      <label>Mật khẩu:</label>
+      <input name="password" type="text" ngModel />
+    </div>
+    <ng-container *ngIf="!isLoginMode">
+      <div>
+        <label>SDT:</label>
+        <input name="phone" type="text" ngModel />
+      </div>
+      <div>
+        <label>Họ:</label>
+        <input name="firstName" type="text" ngModel />
+      </div>
+      <div>
+        <label>Tên:</label>
+        <input name="lastName" type="text" ngModel />
+      </div>
+      <div>
+        <label>Ngày sinh:</label>
+        <input name="dob" type="date" ngModel />
+      </div>
+      <div>
+        <label>Giới tính:</label>
+        <input name="gender" value="male" type="radio" ngModel />Nam
+        <input name="gender" value="female" type="radio" ngModel />Nữ
+      </div>
+    </ng-container>
+    <div class="form__button">
+      <button>{{ isLoginMode ? "Đăng nhập" : "Đăng ký" }}</button>
+      <button (click)="onSwitchMode()" type="button">
+        {{ isLoginMode ? "Chuyển sang đăng ký" : "Chuyển sang đăng nhập" }}
+      </button>
+    </div>
+  </form>
+  <ng-template #Loading>
+    <p>Loading...</p>
+  </ng-template>
+</section>
