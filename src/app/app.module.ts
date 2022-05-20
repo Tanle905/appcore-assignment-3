@@ -12,6 +12,8 @@ import { MainPageCategoryComponent } from './user/user-main-page/main-page-categ
 import { HttpClientModule } from '@angular/common/http';
 import { MainPageProductComponent } from './user/user-main-page/main-page-product/main-page-product.component';
 import { UserLoginComponent } from './user/user-login/user-login.component';
+import { AdminComponent } from './admin/admin.component';
+import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
 
 
 @NgModule({
@@ -23,7 +25,9 @@ import { UserLoginComponent } from './user/user-login/user-login.component';
     UserFooterComponent,
     MainPageCategoryComponent,
     MainPageProductComponent,
-    UserLoginComponent
+    UserLoginComponent,
+    AdminComponent,
+    AdminLoginComponent
   ],
   imports: [
     BrowserModule,
