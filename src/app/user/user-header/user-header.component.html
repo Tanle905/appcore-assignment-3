@@ -2,16 +2,45 @@
   <div class="header__left">
     <a routerLink="/" class="header__brand">Phong Vu.</a>
     <form action="" class="header__form">
-      <input type="text" class="form__input" placeholder="Nhập từ khóa cần tìm..."/>
+      <input
+        type="text"
+        class="form__input"
+        placeholder="Nhập từ khóa cần tìm..."
+      />
       <button class="form__button">
         <fa-icon [icon]="searchIcon"></fa-icon>
       </button>
     </form>
   </div>
   <div class="header__right">
-    <button [routerLink]="icon.link" class="icon__button" *ngFor="let icon of iconsArray">
-      <fa-icon [icon]="icon.name"></fa-icon>
-      <span>{{icon.content}}</span>
+    <button [routerLink]="" class="icon__button">
+      <fa-icon [icon]="faTag"></fa-icon>
+      <span>Khuyến mãi</span>
+    </button>
+    <button [routerLink]="" class="icon__button">
+      <fa-icon [icon]="faClipboardList"></fa-icon>
+      <span>Đơn hàng</span>
+    </button>
+    <button
+      [routerLink]="userData ? '' : '/login'"
+      (mouseover)="onMouseEnter(true)"
+      (mouseleave)="onMouseEnter(false)"
+      class="icon__button"
+    >
+    <app-header-profile [userData]="userData" *ngIf="isMouseEnter && userData"></app-header-profile>
+      <fa-icon [icon]="faUser" *ngIf="!userData; else avatar"></fa-icon>
+      <ng-template #avatar>
+        <img class="avatar__img" [src]="userData && userData.avatar" alt="" />
+      </ng-template>
+      <span>{{ userData ? userData.firstName : "Đăng nhập" }}</span>
+    </button>
+    <button [routerLink]="" class="icon__button">
+      <fa-icon [icon]="faBell"></fa-icon>
+      <span>Thông báo</span>
+    </button>
+    <button [routerLink]="" class="icon__button">
+      <fa-icon [icon]="faCartShopping"></fa-icon>
+      <span>Giỏ hàng</span>
     </button>
   </div>
 </header>

@@ -17,14 +17,13 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./user-header.component.sass'],
 })
 export class UserHeaderComponent implements OnInit {
-  iconsArray: { name: IconDefinition; content: string; link: string }[] = [
-    { name: faTag, content: 'Khuyến mãi', link: '' },
-    { name: faClipboardList, content: 'Đơn hàng', link: '' },
-    { name: faUser, content: 'Đăng nhập', link: '/login' },
-    { name: faBell, content: 'Thông báo', link: '' },
-    { name: faCartShopping, content: 'Giỏ hàng', link: '' },
-  ];
+  faTag = faTag;
+  faClipboardList = faClipboardList;
+  faUser = faUser;
+  faBell = faBell;
+  faCartShopping = faCartShopping;
   searchIcon = faSearch;
+  isMouseEnter:boolean = false
 
   userData: UserProfile | undefined;
   constructor(private userService: UserService) {}
@@ -34,8 +33,10 @@ export class UserHeaderComponent implements OnInit {
       .getOwnProfile(localStorage.getItem('token'))
       .subscribe((data: any) => {
         this.userData = data.data;
-        this.iconsArray[2].content =
-          this.userData?.firstName || '';
       });
+  }
+
+  onMouseEnter(value:boolean){
+    this.isMouseEnter = value
   }
 }

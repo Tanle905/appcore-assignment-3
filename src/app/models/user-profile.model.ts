@@ -1,6 +1,7 @@
 export class UserProfile{
     constructor(
         public _id:string,
+        public avatar:string,
         public email:string,
         public phone:string,
         public isEmailVerified:boolean,

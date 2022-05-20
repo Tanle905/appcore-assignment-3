@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +15,13 @@ export class UserService {
     userProfile: '/users/me/profile',
   };
 
+  private isLogedIn:BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false)
+
   constructor(private http: HttpClient) {}
+
+  get isLoggedIn(){
+    return this.isLogedIn.asObservable()
+  }
 
   getCategories() {
     return this.http.get(

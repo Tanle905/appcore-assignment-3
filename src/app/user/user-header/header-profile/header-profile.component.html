@@ -1,1 +1,21 @@
-<p>header-profile works!</p>
+<div class="header-profile">
+  <div class="profile-info">
+    <img [src]="userData && userData.avatar" class="header__img" />
+    <div class="title">
+      <span class="title__span">{{
+        userData && userData.lastName + " " + userData.firstName
+      }}</span>
+      <span class="email__span">{{ userData && userData.email }}</span>
+    </div>
+  </div>
+  <div>
+    <span>Thong tin tai khoan</span>
+  </div>
+  <div>
+    <span>So dia chi</span>
+  </div>
+  <div>
+    <span>Ban tin</span>
+  </div>
+  <a class="logout__button" (click)="onLogout()">Đăng xuất</a>
+</div>
