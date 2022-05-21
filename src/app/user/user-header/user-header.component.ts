@@ -23,20 +23,24 @@ export class UserHeaderComponent implements OnInit {
   faBell = faBell;
   faCartShopping = faCartShopping;
   searchIcon = faSearch;
-  isMouseEnter:boolean = false
+  isMouseEnter: boolean = false;
 
   userData: UserProfile | undefined;
-  constructor(private userService: UserService) {}
+  constructor(public userService: UserService) {}
 
   ngOnInit(): void {
-    this.userService
-      .getOwnProfile(localStorage.getItem('token'))
-      .subscribe((data: any) => {
-        this.userData = data.data;
-      });
+    if (localStorage.getItem('token'))
+      this.userService
+        .getOwnProfile(localStorage.getItem('token'))
+        .subscribe((res: any) => {
+          this.userData = res.data;
+        });
+    this.userService.onLoggedIn.subscribe((value: any) => {
+      this.userData = value;
+    });
   }
 
-  onMouseEnter(value:boolean){
-    this.isMouseEnter = value
+  onMouseEnter(value: boolean) {
+    this.isMouseEnter = value;
   }
 }

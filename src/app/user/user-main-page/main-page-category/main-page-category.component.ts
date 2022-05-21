@@ -1,16 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Category } from 'src/app/models/category.model';
 import { UserService } from 'src/app/services/user.service';
 
-export interface Category {
-  _id: string;
-  name: string;
-  description: string;
-  image: string;
-  createdAt: Date;
-  updatedAt: Date;
-  slug: string;
-  __v: number;
-}
 
 @Component({
   selector: 'app-main-page-category',

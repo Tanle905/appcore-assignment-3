@@ -5,6 +5,9 @@ import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
 import { AdminComponent } from './admin/admin.component';
 import { UserMainPageComponent } from './user/user-main-page/user-main-page.component';
 import { UserComponent } from './user/user.component';
+import { UserAccountComponent } from './user/user-account/user-account.component';
+import { AuthForgotPasswordComponent } from './user/user-auth/auth-forgot-password/auth-forgot-password.component';
+import { ProductDetailComponent } from './user/user-main-page/main-page-product/product-detail/product-detail.component';
 
 const routes: Routes = [
   {
@@ -13,6 +16,9 @@ const routes: Routes = [
     children: [
       { path: '', component: UserMainPageComponent },
       { path: 'login', component: UserAuthComponent },
+      { path: 'account', component:UserAccountComponent},
+      { path:'forgot-password', component:AuthForgotPasswordComponent},
+      { path:'product', component:ProductDetailComponent}
     ],
   },
   {

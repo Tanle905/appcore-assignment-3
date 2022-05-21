@@ -1,6 +1,12 @@
 <div class="product">
-    <div class="product__detail" *ngFor="let product of products">
-        <img [src]="product.image" alt="">
-        <span>{{product.name}}</span>
-    </div>
+  <span class="title__span">Sản phẩm</span>
+  <div class="product-container">
+    <ng-container *ngFor="let product of products">
+      <div (click)="onNavigate(product._id)" class="product__detail">
+        <img class="product-image__img" [src]="product.image" alt="" />
+        <p class="product-name__p">{{ product.name }}</p>
+        <span class="product-price__span">{{ product.price }}$ AUD</span>
+      </div>
+    </ng-container>
+  </div>
 </div>

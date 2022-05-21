@@ -22,15 +22,25 @@
       <span>Đơn hàng</span>
     </button>
     <button
-      [routerLink]="userData ? '' : '/login'"
       (mouseover)="onMouseEnter(true)"
       (mouseleave)="onMouseEnter(false)"
       class="icon__button"
     >
-    <app-header-profile [userData]="userData" *ngIf="isMouseEnter && userData"></app-header-profile>
-      <fa-icon [icon]="faUser" *ngIf="!userData; else avatar"></fa-icon>
+      <app-header-profile
+        [userData]="userData"
+        *ngIf="isMouseEnter && userData"
+      ></app-header-profile>
+      <fa-icon
+        routerLink="/login"
+        [icon]="faUser"
+        *ngIf="!userData; else avatar"
+      ></fa-icon>
       <ng-template #avatar>
-        <img class="avatar__img" [src]="userData && userData.avatar" alt="" />
+        <img
+          class="avatar__img"
+          [src]="userData && userData.avatar"
+          alt=""
+        />
       </ng-template>
       <span>{{ userData ? userData.firstName : "Đăng nhập" }}</span>
     </button>

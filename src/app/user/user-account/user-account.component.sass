@@ -1,55 +1,42 @@
 @import "../../shared/variables"
     
-.auth
-    width: 80%
+.profile
+    width: 60%
     height: 450px
     display: flex
     flex-direction: column
     justify-content: space-between
     margin: 30px auto
-    padding: 40px 0px
-    border-radius: 7px
-    box-shadow: 1px 2px 10px $light-gray
-    .auth-title
-        margin:0px auto
-        font-size: 1.75rem
+    
+    .profile-title
+        font-size: 1.5rem
         font-weight: bold
-    .auth__form
+    .profile__form
+        border-radius: 7px
+        box-shadow: 1px 2px 10px $light-gray    
         width: 100%
         display: flex
         flex-direction: column
         justify-content: center
+        padding: 40px 0px
         margin: auto
-        span
-            margin: auto
-            font-size: 0.75rem
-            color: red
         div
             display: flex
-            justify-content: center
-            width: 35%
-            margin: 5px auto
-            span
-                margin-right: auto
-                margin-left:35%
-                font-size: 0.75rem
-                color: red
+            width: 100%
+            margin: 5px 20px
             label
-                min-width: 100px
-                margin: auto 0px
-                margin-right: auto
+                width: 100px
+                margin: auto 10px
             input
                 border: 1.75px solid $light-gray
                 border-radius: 5px
                 background-color: $lighter-gray
                 width: 275px
                 height: 30px
-                margin-left: auto
                 &:hover
                     transition: border-color 300ms
                     border-color: $light-blue
             .input__radio
-                margin-right: auto
                 width: 5%
                 height: 20px
             a
@@ -63,20 +50,16 @@
         .form__button
             width: 100%
             display: flex
-            justify-content: center
             button
                 cursor: pointer
                 margin: 0px 10px
                 padding: 10px 0px
-                width: 35%
+                width: 10%
                 border: none
                 border-radius: 3px
                 background-color: $light-blue
                 color: white
-                &:disabled
-                    cursor: default
-                    background-color: $light-gray
-                &:hover:enabled
+                &:hover
                     transition: all 200ms
                     transition-timing-function: ease-in-out
                     transform: translate(0px,-1px)

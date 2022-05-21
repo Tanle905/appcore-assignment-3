@@ -16,6 +16,9 @@ import { FormsModule } from '@angular/forms';
 import { HeaderProfileComponent } from './user/user-header/header-profile/header-profile.component';
 import { AdminComponent } from './admin/admin.component';
 import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
+import { UserAccountComponent } from './user/user-account/user-account.component';
+import { AuthForgotPasswordComponent } from './user/user-auth/auth-forgot-password/auth-forgot-password.component';
+import { ProductDetailComponent } from './user/user-main-page/main-page-product/product-detail/product-detail.component';
 
 
 @NgModule({
@@ -30,7 +33,10 @@ import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
     UserAuthComponent,
     HeaderProfileComponent,
     AdminComponent,
-    AdminLoginComponent
+    AdminLoginComponent,
+    UserAccountComponent,
+    AuthForgotPasswordComponent,
+    ProductDetailComponent
   ],
   imports: [
     BrowserModule,

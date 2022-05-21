@@ -1,0 +1,47 @@
+<section class="profile">
+  <span class="profile-title">Thông tin tài khoản</span>
+  <form class="profile__form" #profileForm="ngForm" (ngSubmit)="onSubmit(profileForm)">
+    <div>
+      <label>Email:</label>
+      <input email required type="text" name="email" [(ngModel)]="userData.email" />
+    </div>
+    <div>
+      <label>SDT:</label>
+      <input name="phone" type="text" [(ngModel)]="userData.phone" />
+    </div>
+    <div>
+      <label>Họ:</label>
+      <input name="firstName" type="text" [(ngModel)]="userData.firstName" />
+    </div>
+    <div>
+      <label>Tên:</label>
+      <input name="lastName" type="text" [(ngModel)]="userData.lastName" />
+    </div>
+    <div>
+      <label>Ngày sinh:</label>
+      <input name="dob" type="date" [(ngModel)]="userData.dob" />
+    </div>
+    <div>
+      <label>Giới tính:</label>
+      <input
+        class="input__radio"
+        name="gender"
+        value="male"
+        type="radio"
+        [checked]="userData.gender === 'male'"
+        ngModel
+      />Nam
+      <input
+        class="input__radio"
+        name="gender"
+        value="female"
+        type="radio"
+        [checked]="userData.gender === 'female'"
+        ngModel
+      />Nữ
+    </div>
+    <div class="form__button">
+      <button type="submit">Cập nhật</button>
+    </div>
+  </form>
+</section>

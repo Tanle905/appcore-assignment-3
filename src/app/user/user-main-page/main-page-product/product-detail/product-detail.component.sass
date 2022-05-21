@@ -1,0 +1,68 @@
+@import "../../../../shared/variables"
+
+.product
+    width: 60%
+    margin: 30px auto
+    border-radius: 7px
+    box-shadow: 1px 2px 10px $light-gray
+    padding: 10px
+    .product-upper
+        display: flex
+        .detail__img
+            width: 40%
+            border-radius: 7px
+        .detail-info
+            display: flex
+            flex-direction: column
+            width: 60%
+            margin-left: 50px
+            .title__span
+                font-size: 1.5rem
+                font-weight: bold
+            .brand__span
+                margin: 1px 0px
+                padding-right: 20px
+                border-right: 2px solid $light-gray
+                font-weight: bold
+                text-align: center
+            .sku__span
+                font-weight: bold
+                margin-left: 20px
+            .price__span
+                display: inline-block
+                margin: 15px 0px
+            .button
+                display: flex
+                justify-content: space-between
+                button
+                    width: 49%
+                    height: 30px
+                    cursor: pointer
+                    font-size: 0.8rem
+                    font-weight: bold
+                    &:hover
+                        transition: all 200ms
+                        transition-timing-function: ease-in-out
+                        transform: translate(0px,-1px)
+                .buy-now__button
+                    border: none
+                    border-radius: 3px
+                    background-color: $light-blue
+                    color: white
+                    &:hover
+                        background-color: $lighter-blue
+                .add-to-cart__button
+                    width: 49%
+                    height: 30px
+                    border: 2px solid $light-blue
+                    border-radius: 3px
+                    background-color: white
+                    color: $light-blue
+    .product-detail
+        margin-top: 10px
+        padding-top: 10px
+        border-top: 2px dashed $lighter-gray
+
+.info--row
+    font-size: 0.75rem
+    color: $gray

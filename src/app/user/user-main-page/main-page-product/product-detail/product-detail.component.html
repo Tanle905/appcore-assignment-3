@@ -1,0 +1,23 @@
+<div class="product">
+  <div class="product-upper">
+    <img class="detail__img" [src]="productDetails.image" alt="" />
+    <div class="detail-info">
+      <div>
+        <span class="title__span">{{ productDetails.name }}</span>
+        <div class="info--row">
+          <span class="brand__span"
+            >Danh mục {{ productDetails.category.name }}</span
+          >
+          <span class="sku__span">SKU: {{ productDetails.sku }}</span>
+        </div>
+        <span class="price__span">{{ productDetails.price }}$ AUD</span>
+      </div>
+      <div class="button">
+        <button class="buy-now__button">MUA NGAY</button>
+        <button class="add-to-cart__button">THÊM VÀO GIỎ HÀNG</button>
+      </div>
+    </div>
+  </div>
+  <div [innerHTML]="productDetails.description" class="product-detail">
+  </div>
+</div>
