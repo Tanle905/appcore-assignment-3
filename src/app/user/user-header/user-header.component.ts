@@ -23,7 +23,8 @@ export class UserHeaderComponent implements OnInit {
   faBell = faBell;
   faCartShopping = faCartShopping;
   searchIcon = faSearch;
-  isMouseEnter: boolean = false;
+  isAccountHovered: boolean = false;
+  isCartHovered: boolean = false;
 
   userData: UserProfile | undefined;
   constructor(public userService: UserService) {}
@@ -40,7 +41,10 @@ export class UserHeaderComponent implements OnInit {
     });
   }
 
-  onMouseEnter(value: boolean) {
-    this.isMouseEnter = value;
+  onAccountHover(value: boolean) {
+    this.isAccountHovered = value;
+  }
+  onCartHover(value:boolean){
+    this.isCartHovered = value;
   }
 }

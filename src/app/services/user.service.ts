@@ -1,8 +1,4 @@
-import {
-  HttpClient,
-  HttpHeaders,
-  HttpParams,
-} from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { UserProfile } from '../models/user-profile.model';
@@ -20,8 +16,8 @@ export class UserService {
     userRegister: '/auth/register',
     userProfile: '/users/me/profile',
   };
-  onLoggedIn: Subject<Object | null> = new Subject<Object | null>();
-
+  onLoggedIn: Subject<Object | null> = new Subject();
+  onUpdateCart: Subject<boolean> = new Subject();
   constructor(private http: HttpClient) {}
 
   getCategories() {
@@ -38,8 +34,8 @@ export class UserService {
         '?page=1&limit=10&search=&sort[createdAt]=asc'
     );
   }
-  getProductDetails(productId:string){
-    return this.http.get(this.URL + this.userApi.products + '/' + productId)
+  getProductDetails(productId: string) {
+    return this.http.get(this.URL + this.userApi.products + '/' + productId);
   }
   getOwnProfile(token: string | null) {
     return this.http.get(this.URL + this.userApi.userProfile, {

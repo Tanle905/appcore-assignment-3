@@ -23,6 +23,9 @@ export class UserAccountComponent implements OnInit {
   onSubmit(profileForm: NgForm) {
     this.userService
       .updateOwnProfile(this.token, profileForm.value)
-      .subscribe((res) => alert("Cập nhật tài khoản thành công"));
+      .subscribe((res:any) => {
+        alert("Cập nhật tài khoản thành công")
+        this.userService.onLoggedIn.next(res.data)
+      });
   }
 }

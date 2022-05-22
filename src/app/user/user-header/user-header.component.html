@@ -13,43 +13,44 @@
     </form>
   </div>
   <div class="header__right">
-    <button [routerLink]="" class="icon__button">
+    <button class="icon__button">
       <fa-icon [icon]="faTag"></fa-icon>
       <span>Khuyến mãi</span>
     </button>
-    <button [routerLink]="" class="icon__button">
+    <button class="icon__button">
       <fa-icon [icon]="faClipboardList"></fa-icon>
       <span>Đơn hàng</span>
     </button>
     <button
-      (mouseover)="onMouseEnter(true)"
-      (mouseleave)="onMouseEnter(false)"
+      (mouseover)="onAccountHover(true)"
+      (mouseleave)="onAccountHover(false)"
       class="icon__button"
     >
       <app-header-profile
         [userData]="userData"
-        *ngIf="isMouseEnter && userData"
+        *ngIf="isAccountHovered && userData"
       ></app-header-profile>
       <fa-icon
         routerLink="/login"
         [icon]="faUser"
-        *ngIf="!userData; else avatar"
+        *ngIf="!userData || !userData.avatar; else avatar"
       ></fa-icon>
       <ng-template #avatar>
-        <img
-          class="avatar__img"
-          [src]="userData && userData.avatar"
-          alt=""
-        />
+        <img class="avatar__img" [src]="userData && userData.avatar" alt="" />
       </ng-template>
       <span>{{ userData ? userData.firstName : "Đăng nhập" }}</span>
     </button>
-    <button [routerLink]="" class="icon__button">
+    <button class="icon__button">
       <fa-icon [icon]="faBell"></fa-icon>
       <span>Thông báo</span>
     </button>
-    <button [routerLink]="" class="icon__button">
-      <fa-icon [icon]="faCartShopping"></fa-icon>
+    <button
+      class="icon__button"
+      (mouseover)="onCartHover(true)"
+      (mouseleave)="onCartHover(false)"
+    >
+      <app-header-cart *ngIf="true"></app-header-cart>
+      <fa-icon routerLink="/cart" [icon]="faCartShopping"></fa-icon>
       <span>Giỏ hàng</span>
     </button>
   </div>
