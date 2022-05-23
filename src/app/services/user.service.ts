@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { UserProfile } from '../models/user-profile.model';
 
@@ -16,9 +17,10 @@ export class UserService {
     userRegister: '/auth/register',
     userProfile: '/users/me/profile',
   };
-  onLoggedIn: Subject<Object | null> = new Subject();
+  authState: Subject<Object | null> = new Subject();
+  isLoggedIn: boolean = false
   onUpdateCart: Subject<boolean> = new Subject();
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router:Router) {}
 
   getCategories() {
     return this.http.get(
@@ -49,6 +51,15 @@ export class UserService {
   }
   auth(params: any) {
     return this.http.post(this.URL + this.userApi.userLogin, params);
+  }
+  autoLogout(expireIn: number) {
+    setTimeout(() => {
+      alert("Phiên làm việc đã hết hạn. Vui lòng đăng nhập lại")
+      localStorage.removeItem('token');
+      this.isLoggedIn = false
+      this.authState.next(null);
+      this.router.navigate([''])
+    },expireIn);
   }
   forgotPassword(params: any) {
     return this.http.post(this.URL + this.userApi.userForgotPassword, params);

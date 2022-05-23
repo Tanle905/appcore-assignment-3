@@ -36,7 +36,7 @@ export class UserHeaderComponent implements OnInit {
         .subscribe((res: any) => {
           this.userData = res.data;
         });
-    this.userService.onLoggedIn.subscribe((value: any) => {
+    this.userService.authState.subscribe((value: any) => {
       this.userData = value;
     });
   }

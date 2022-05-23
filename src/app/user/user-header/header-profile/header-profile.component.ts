@@ -17,8 +17,8 @@ export class HeaderProfileComponent implements OnInit {
   }
 
   onLogout(){
-    localStorage.clear()
-    this.userService.onLoggedIn.next(null)
+    localStorage.removeItem('token')
+    this.userService.authState.next(null)
     this.route.navigate([''])
   }
 

@@ -22,7 +22,7 @@ import { ProductDetailComponent } from './user/user-main-page/main-page-product/
 import { HeaderCartComponent } from './user/user-header/header-cart/header-cart.component';
 import { MainPageCheckoutComponent } from './user/user-main-page/main-page-checkout/main-page-checkout.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-
+import { NgxStripeModule } from 'ngx-stripe';
 
 @NgModule({
   declarations: [
@@ -42,16 +42,19 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     ProductDetailComponent,
     HeaderCartComponent,
     MainPageCheckoutComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FontAwesomeModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    NgxStripeModule.forRoot(
+      'pk_test_51KxEc0JsyzcmxeMthvDJvy8lLHbDXIU3uggTgPC4oXvUDwL1DNt7srJwYKzzJyG7NLDv9MjprFy7DZPgoHxieMaS00tFsI8FNI'
+    ),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

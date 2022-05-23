@@ -25,7 +25,7 @@ export class UserAccountComponent implements OnInit {
       .updateOwnProfile(this.token, profileForm.value)
       .subscribe((res:any) => {
         alert("Cập nhật tài khoản thành công")
-        this.userService.onLoggedIn.next(res.data)
+        this.userService.authState.next(res.data)
       });
   }
 }

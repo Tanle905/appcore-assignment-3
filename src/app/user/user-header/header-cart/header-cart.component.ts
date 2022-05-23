@@ -21,7 +21,7 @@ export class HeaderCartComponent implements OnInit {
       this.itemsList =
         localStorage['items'] && JSON.parse(localStorage['items']);
     });
-    this.itemsList.forEach((item) => {
+    this.itemsList && this.itemsList.forEach((item) => {
       this.totalQuantity = this.totalQuantity + item.quantity;
       this.totalPrice = this.totalPrice + item.price * item.quantity;
     });
