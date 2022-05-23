@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { StripeService } from 'ngx-stripe';
+import { switchMap } from 'rxjs';
 import { CartItem } from 'src/app/models/cart-item.model';
 import { UserService } from 'src/app/services/user.service';
 
@@ -9,16 +12,15 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class MainPageCheckoutComponent implements OnInit {
   itemsList: CartItem[] = [];
-  isLoggedIn: boolean = false;
   totalPrice: number = 0;
 
-  constructor(private userService: UserService) {}
+  constructor(
+    private userService: UserService,
+    private router: Router,
+    private stripeService: StripeService
+  ) {}
 
   ngOnInit(): void {
-    this.isLoggedIn = this.userService.isLoggedIn;
-    this.userService.authState.subscribe(
-      () => (this.isLoggedIn = this.userService.isLoggedIn)
-    );
     this.itemsList = localStorage['items'] && JSON.parse(localStorage['items']);
     this.itemsList &&
       this.itemsList.forEach((item) => {
@@ -33,5 +35,24 @@ export class MainPageCheckoutComponent implements OnInit {
         })
       : (this.totalPrice = 0);
     localStorage['items'] = JSON.stringify(this.itemsList);
+  }
+  onCheckout() {
+    if (localStorage['token']) {
+      this.userService
+        .createPaymentMethod(localStorage['token'])
+        .pipe(
+          switchMap((session: any) => {
+            return this.stripeService.redirectToCheckout({
+              sessionId: session.id,
+            });
+          })
+        )
+        .subscribe((result) => {
+          console.log(result);
+          if (result.error) {
+            alert(result.error.message);
+          }
+        });
+    } else this.router.navigate(['/login']);
   }
 }

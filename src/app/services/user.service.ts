@@ -16,11 +16,11 @@ export class UserService {
     userForgotPassword: '/auth/forgot-password',
     userRegister: '/auth/register',
     userProfile: '/users/me/profile',
+    userPaymentMethod: '/users/me/payment-methods',
   };
   authState: Subject<Object | null> = new Subject();
-  isLoggedIn: boolean = false
   onUpdateCart: Subject<boolean> = new Subject();
-  constructor(private http: HttpClient, private router:Router) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   getCategories() {
     return this.http.get(
@@ -54,12 +54,11 @@ export class UserService {
   }
   autoLogout(expireIn: number) {
     setTimeout(() => {
-      alert("Phiên làm việc đã hết hạn. Vui lòng đăng nhập lại")
+      alert('Phiên làm việc đã hết hạn. Vui lòng đăng nhập lại');
       localStorage.removeItem('token');
-      this.isLoggedIn = false
       this.authState.next(null);
-      this.router.navigate([''])
-    },expireIn);
+      this.router.navigate(['']);
+    }, expireIn);
   }
   forgotPassword(params: any) {
     return this.http.post(this.URL + this.userApi.userForgotPassword, params);
@@ -71,5 +70,14 @@ export class UserService {
         'Content-Type': 'application/x-www-form-urlencoded',
       }),
     });
+  }
+  createPaymentMethod(token: string | null) {
+    return this.http.post(
+      this.URL + this.userApi.userPaymentMethod,
+      {},
+      {
+        headers: new HttpHeaders({ Authorization: 'Bearer ' + token }),
+      }
+    );
   }
 }
