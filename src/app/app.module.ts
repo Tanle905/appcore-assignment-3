@@ -20,6 +20,8 @@ import { UserAccountComponent } from './user/user-account/user-account.component
 import { AuthForgotPasswordComponent } from './user/user-auth/auth-forgot-password/auth-forgot-password.component';
 import { ProductDetailComponent } from './user/user-main-page/main-page-product/product-detail/product-detail.component';
 import { HeaderCartComponent } from './user/user-header/header-cart/header-cart.component';
+import { MainPageCheckoutComponent } from './user/user-main-page/main-page-checkout/main-page-checkout.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 
 @NgModule({
@@ -38,7 +40,9 @@ import { HeaderCartComponent } from './user/user-header/header-cart/header-cart.
     UserAccountComponent,
     AuthForgotPasswordComponent,
     ProductDetailComponent,
-    HeaderCartComponent
+    HeaderCartComponent,
+    MainPageCheckoutComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,

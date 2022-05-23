@@ -3,10 +3,19 @@
     <div class="item" *ngFor="let item of itemsList">
       <img [src]="item.image" class="item__img" alt="" />
       <div class="span-block">
-        <span class="name__p">{{ item.name }}</span>
+        <span (click)="toProduct(item.id)" class="name__p">{{ item.name }}</span>
         <span class="quantity__span">Số lượng: {{ item.quantity }}</span>
         <span class="price__span">{{ item.price }}$ AUD</span>
       </div>
     </div>
+  </div>
+  <div class="to-checkout">
+    <div class="total">
+      <span class="total-quantity__span">Tổng tiền({{totalQuantity}}) sản phẩm: </span>
+      <span class="total-price__span">{{totalPrice}}$ AUD</span>
+    </div>
+    <button routerLink="/checkout" class="to-checkout__button">
+      Xem giỏ hàng
+    </button>
   </div>
 </section>

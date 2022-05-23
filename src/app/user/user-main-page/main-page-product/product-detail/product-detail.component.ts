@@ -1,15 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CartItem } from 'src/app/models/cart-item.model';
 import { Product } from 'src/app/models/product.model';
 import { UserService } from 'src/app/services/user.service';
 
-export interface CartItem {
-  id: string;
-  name: string;
-  price: number;
-  image: string;
-  quantity: number;
-}
 
 @Component({
   selector: 'app-product-detail',
@@ -23,7 +17,8 @@ export class ProductDetailComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router:Router
   ) {}
 
   ngOnInit(): void {
@@ -35,7 +30,10 @@ export class ProductDetailComponent implements OnInit {
     });
   }
 
-  onBuyNow() {}
+  onBuyNow() {
+    this.onAddToCart()
+    this.router.navigate(['/checkout'])
+  }
   onAddToCart() {
     const items: CartItem[] =
       (localStorage['items'] && JSON.parse(localStorage['items'])) || [];
@@ -54,12 +52,13 @@ export class ProductDetailComponent implements OnInit {
           price: this.productDetails.price,
           image: this.productDetails.image,
           quantity: 1,
+          sku: this.productDetails.sku
         });
       }
       localStorage.setItem('items', JSON.stringify(items));
       this.quantityLeft--;
       this.userService.onUpdateCart.next(true)
-    } else alert('Da het hang');
+    } else alert('Da dat so luong toi da');
 
     function checkForDuplicate(items: CartItem[], id: string) {
       return items.filter((item: any) => item.id.includes(id));

@@ -1,0 +1,27 @@
+<section class="checkout">
+  <span class="title__span">Giỏ hàng</span>
+  <div class="item-list">
+    <div class="header-row">
+      <span class="name-header__span">Tên mặt hàng</span>
+      <span class="price-header__span">Đơn giá</span>
+      <span class="quantity-header__span">Số lượng</span>
+      <span class="total-price-header__span">Thành tiền</span>
+    </div>
+    <div *ngFor="let item of itemList" class="item-detail-row">
+      <img [src]="item.image" class="image__img" alt="" />
+      <div class="name-sku">
+          <p class="item-name__p">{{ item.name }}</p>
+          <span class="item-sku__span">SKU: {{item.sku}}</span>
+      </div>
+      <span class="price__span">{{ item.price }}$ AUD</span>
+      <input
+        type="number"
+        class="quantity__input"
+        min="0"
+        [(ngModel)]="item.quantity"
+      />
+      <span class="total-price__span">{{ item.price * item.quantity }}$ AUD</span>
+    </div>
+  </div>
+  <div class="checkout-continue"></div>
+</section>

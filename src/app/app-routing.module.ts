@@ -8,6 +8,8 @@ import { UserComponent } from './user/user.component';
 import { UserAccountComponent } from './user/user-account/user-account.component';
 import { AuthForgotPasswordComponent } from './user/user-auth/auth-forgot-password/auth-forgot-password.component';
 import { ProductDetailComponent } from './user/user-main-page/main-page-product/product-detail/product-detail.component';
+import { MainPageCheckoutComponent } from './user/user-main-page/main-page-checkout/main-page-checkout.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const routes: Routes = [
   {
@@ -18,7 +20,8 @@ const routes: Routes = [
       { path: 'login', component: UserAuthComponent },
       { path: 'account', component:UserAccountComponent},
       { path:'forgot-password', component:AuthForgotPasswordComponent},
-      { path:'product', component:ProductDetailComponent}
+      { path:'product', component:ProductDetailComponent},
+      { path: 'checkout', component:MainPageCheckoutComponent}
     ],
   },
   {
@@ -29,6 +32,7 @@ const routes: Routes = [
       { path: 'login', component: AdminLoginComponent },
     ],
   },
+  {path: '**', component:PageNotFoundComponent}
 ];
 
 @NgModule({
