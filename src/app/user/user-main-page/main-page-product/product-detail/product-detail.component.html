@@ -10,7 +10,7 @@
           >
           <span class="sku__span">SKU: {{ productDetails.sku }}</span>
         </div>
-        <span class="price__span">{{ productDetails.price }}$ AUD</span>
+        <span class="price__span">{{ productDetails.price | currency:'AUD':'symbol-narrow':'3.2-2'}}</span>
       </div>
       <div class="button">
         <button (click)="onBuyNow()" class="buy-now__button">MUA NGAY</button>

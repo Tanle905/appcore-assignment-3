@@ -5,7 +5,7 @@
       <div (click)="onNavigate(product._id)" class="product__detail">
         <img class="product-image__img" [src]="product.image" alt="" />
         <p class="product-name__p">{{ product.name }}</p>
-        <span class="product-price__span">{{ product.price }}$ AUD</span>
+        <span class="product-price__span">{{ product.price | currency:'AUD':'symbol-narrow':'3.2-2'}}</span>
       </div>
     </ng-container>
   </div>

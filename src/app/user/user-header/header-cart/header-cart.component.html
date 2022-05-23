@@ -5,14 +5,14 @@
       <div class="span-block">
         <span (click)="toProduct(item.id)" class="name__p">{{ item.name }}</span>
         <span class="quantity__span">Số lượng: {{ item.quantity }}</span>
-        <span class="price__span">{{ item.price }}$ AUD</span>
+        <span class="price__span">{{ item.price | currency:'AUD':'symbol-narrow':'3.2-2'}}</span>
       </div>
     </div>
   </div>
   <div class="to-checkout">
     <div class="total">
       <span class="total-quantity__span">Tổng tiền({{totalQuantity}}) sản phẩm: </span>
-      <span class="total-price__span">{{totalPrice}}$ AUD</span>
+      <span class="total-price__span">{{totalPrice | currency:'AUD':'symbol-narrow':'3.2-2'}}</span>
     </div>
     <button routerLink="/checkout" class="to-checkout__button">
       Xem giỏ hàng

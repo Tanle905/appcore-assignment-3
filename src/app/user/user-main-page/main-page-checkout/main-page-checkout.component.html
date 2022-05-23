@@ -15,7 +15,7 @@
           <p class="item-name__p">{{ item.name }}</p>
           <span class="item-sku__span">SKU: {{ item.sku }}</span>
         </div>
-        <span class="price__span">{{ item.price }}$ AUD</span>
+        <span class="price__span">{{ item.price | currency:'AUD':'symbol-narrow':'3.2-2'}}</span>
         <input
           type="number"
           class="quantity__input"
@@ -23,7 +23,7 @@
           [(ngModel)]="item.quantity"
         />
         <span class="total-price-item__span"
-          >{{ item.price * item.quantity }}$ AUD</span
+          >{{ item.price * item.quantity | currency:'AUD':'symbol-narrow':'3.2-2'}}</span
         >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -46,7 +46,7 @@
       <span class="checkout-title__span">Thanh toán</span>
       <div class="total-price">
         <span class="total-price-title__span">Thành tiền: </span>
-        <span class="total-price__span">{{ totalPrice }}$ AUD</span>
+        <span class="total-price__span">{{ totalPrice | currency:'AUD':'symbol-narrow':'3.2-2'}}</span>
       </div>
       <button
         class="checkout__button"
