@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
   faBell,
   faCartShopping,
@@ -8,6 +8,8 @@ import {
   faUser,
   IconDefinition,
 } from '@fortawesome/free-solid-svg-icons';
+import { Subscription } from 'rxjs';
+import { CartItem } from 'src/app/models/cart-item.model';
 import { UserProfile } from 'src/app/models/user-profile.model';
 import { UserService } from 'src/app/services/user.service';
 
@@ -16,7 +18,7 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './user-header.component.html',
   styleUrls: ['./user-header.component.sass'],
 })
-export class UserHeaderComponent implements OnInit {
+export class UserHeaderComponent implements OnInit, OnDestroy {
   faTag = faTag;
   faClipboardList = faClipboardList;
   faUser = faUser;
@@ -25,18 +27,37 @@ export class UserHeaderComponent implements OnInit {
   searchIcon = faSearch;
   isAccountHovered: boolean = false;
   isCartHovered: boolean = false;
+  itemList: CartItem[] = [];
+  totalQuantity: number = 0;
+  authStateSub: Subscription = new Subscription();
+  onUpdateCartSub: Subscription = new Subscription();
 
   userData: UserProfile | undefined;
   constructor(public userService: UserService) {}
 
   ngOnInit(): void {
+    this.itemList = JSON.parse(localStorage['items']);
+    this.itemList.forEach((item) => {
+      this.totalQuantity = this.totalQuantity + item.quantity;
+    });
+    if (localStorage['items']) {
+      this.onUpdateCartSub = this.userService.onUpdateCart.subscribe(
+        (items) => {
+          let quantity = 0;
+          items.forEach((item) => {
+            quantity = quantity + item.quantity;
+          });
+          this.totalQuantity = quantity;
+        }
+      );
+    }
     if (localStorage.getItem('token'))
       this.userService
         .getOwnProfile(localStorage.getItem('token'))
         .subscribe((res: any) => {
           this.userData = res.data;
         });
-    this.userService.authState.subscribe((value: any) => {
+    this.authStateSub = this.userService.authState.subscribe((value: any) => {
       this.userData = value;
     });
   }
@@ -44,7 +65,11 @@ export class UserHeaderComponent implements OnInit {
   onAccountHover(value: boolean) {
     this.isAccountHovered = value;
   }
-  onCartHover(value:boolean){
+  onCartHover(value: boolean) {
     this.isCartHovered = value;
+  }
+  ngOnDestroy(): void {
+    this.authStateSub.unsubscribe();
+    this.onUpdateCartSub.unsubscribe();
   }
 }

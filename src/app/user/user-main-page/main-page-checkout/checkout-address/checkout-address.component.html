@@ -1,0 +1,5 @@
+<div class="address" [ngClass]="address.isDefault ? 'address--active' : ''" *ngFor="let address of addressList">
+    <span>{{address.fullName}}</span>
+    <span>{{address.phone}}</span>
+    <span>{{address.fullAddress}}</span>
+</div>

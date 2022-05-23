@@ -1,7 +1,8 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subject } from 'rxjs';
+import { interval, Subject, Subscription } from 'rxjs';
+import { CartItem } from '../models/cart-item.model';
 import { UserProfile } from '../models/user-profile.model';
 
 @Injectable({
@@ -17,9 +18,11 @@ export class UserService {
     userRegister: '/auth/register',
     userProfile: '/users/me/profile',
     userPaymentMethod: '/users/me/payment-methods',
+    userAddresses: '/users/me/addresses',
   };
   authState: Subject<Object | null> = new Subject();
-  onUpdateCart: Subject<boolean> = new Subject();
+  onUpdateCart: Subject<CartItem[]> = new Subject();
+  autoLogoutIntervalSub: Subscription = new Subscription();
   constructor(private http: HttpClient, private router: Router) {}
 
   getCategories() {
@@ -52,13 +55,21 @@ export class UserService {
   auth(params: any) {
     return this.http.post(this.URL + this.userApi.userLogin, params);
   }
-  autoLogout(expireIn: number) {
-    setTimeout(() => {
-      alert('Phiên làm việc đã hết hạn. Vui lòng đăng nhập lại');
-      localStorage.removeItem('token');
-      this.authState.next(null);
-      this.router.navigate(['']);
-    }, expireIn);
+  autoLogout(params: string) {
+    const createdAt = new Date(params);
+    let expireIn: number = 3600000;
+    this.autoLogoutIntervalSub = interval(1000).subscribe(() => {
+      const now = new Date();
+      expireIn = createdAt.getTime() + 3600000 - now.getTime();
+      if (expireIn <= 0) {
+        alert('Phiên làm việc đã hết hạn. Vui lòng đăng nhập lại');
+        localStorage.removeItem('token');
+        localStorage.removeItem('expireIn');
+        this.autoLogoutIntervalSub.unsubscribe();
+        this.authState.next(null);
+        this.router.navigate(['']);
+      }
+    });
   }
   forgotPassword(params: any) {
     return this.http.post(this.URL + this.userApi.userForgotPassword, params);
@@ -71,10 +82,23 @@ export class UserService {
       }),
     });
   }
+  getPaymentMethod(token: string | null) {
+    return this.http.get(this.URL + this.userApi.userPaymentMethod, {
+      headers: new HttpHeaders({ Authorization: 'Bearer ' + token }),
+    });
+  }
   createPaymentMethod(token: string | null) {
     return this.http.post(
       this.URL + this.userApi.userPaymentMethod,
       {},
+      {
+        headers: new HttpHeaders({ Authorization: 'Bearer ' + token }),
+      }
+    );
+  }
+  getAddress(token: string | null){
+    return this.http.get(
+      this.URL + this.userApi.userAddresses,
       {
         headers: new HttpHeaders({ Authorization: 'Bearer ' + token }),
       }

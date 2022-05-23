@@ -6,20 +6,20 @@ import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'app-header-profile',
   templateUrl: './header-profile.component.html',
-  styleUrls: ['./header-profile.component.sass']
+  styleUrls: ['./header-profile.component.sass'],
 })
 export class HeaderProfileComponent implements OnInit {
-  @Input() userData:UserProfile | undefined
+  @Input() userData: UserProfile | undefined;
 
-  constructor(private route: Router, private userService:UserService) { }
+  constructor(private route: Router, private userService: UserService) {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  onLogout() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('expireIn');
+    this.userService.autoLogoutIntervalSub.unsubscribe();
+    this.userService.authState.next(null);
+    this.route.navigate(['']);
   }
-
-  onLogout(){
-    localStorage.removeItem('token')
-    this.userService.authState.next(null)
-    this.route.navigate([''])
-  }
-
 }

@@ -15,16 +15,18 @@
           <p class="item-name__p">{{ item.name }}</p>
           <span class="item-sku__span">SKU: {{ item.sku }}</span>
         </div>
-        <span class="price__span">{{ item.price | currency:'AUD':'symbol-narrow':'3.2-2'}}</span>
+        <span class="price__span">{{
+          item.price | currency: "AUD":"symbol-narrow":"3.2-2"
+        }}</span>
         <input
           type="number"
           class="quantity__input"
           min="0"
           [(ngModel)]="item.quantity"
         />
-        <span class="total-price-item__span"
-          >{{ item.price * item.quantity | currency:'AUD':'symbol-narrow':'3.2-2'}}</span
-        >
+        <span class="total-price-item__span">{{
+          item.price * item.quantity | currency: "AUD":"symbol-narrow":"3.2-2"
+        }}</span>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           class="remove-item__svg"
@@ -42,18 +44,22 @@
         </svg>
       </div>
     </div>
-    <div class="checkout-continue">
-      <span class="checkout-title__span">Thanh toán</span>
-      <div class="total-price">
-        <span class="total-price-title__span">Thành tiền: </span>
-        <span class="total-price__span">{{ totalPrice | currency:'AUD':'symbol-narrow':'3.2-2'}}</span>
+    <div class="checkout-section">
+      <div class="checkout-row checkout-row--address">
+        <app-checkout-address></app-checkout-address>
       </div>
-      <button
-        class="checkout__button"
-        (click)="onCheckout()"
-      >
-        <span>Thanh toán</span>
-      </button>
+      <div class="checkout-row">
+        <span class="checkout-title__span">Thanh toán</span>
+        <div class="total-price">
+          <span class="total-price-title__span">Thành tiền: </span>
+          <span class="total-price__span">{{
+            totalPrice | currency: "AUD":"symbol-narrow":"3.2-2"
+          }}</span>
+        </div>
+        <button class="checkout__button" (click)="onCheckout()">
+          <span>Thanh toán</span>
+        </button>
+      </div>
     </div>
   </div>
 </section>

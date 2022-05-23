@@ -24,7 +24,6 @@
     "@fortawesome/free-regular-svg-icons": "^6.1.0",
     "@fortawesome/free-solid-svg-icons": "^6.1.1",
     "@stripe/stripe-js": "^1.29.0",
-    "ngx-stripe": "^13.2.1",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"

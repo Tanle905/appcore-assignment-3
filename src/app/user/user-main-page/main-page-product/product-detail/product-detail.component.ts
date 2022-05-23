@@ -57,7 +57,7 @@ export class ProductDetailComponent implements OnInit {
       }
       localStorage.setItem('items', JSON.stringify(items));
       this.quantityLeft--;
-      this.userService.onUpdateCart.next(true)
+      this.userService.onUpdateCart.next(items)
     } else alert('Da dat so luong toi da');
 
     function checkForDuplicate(items: CartItem[], id: string) {

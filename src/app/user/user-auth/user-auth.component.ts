@@ -37,9 +37,9 @@ export class UserAuthComponent implements OnInit {
             })
           )
           .subscribe((res: any) => {
-            console.log(res)
             localStorage.setItem('token', res.data.accessToken);
-            this.userService.autoLogout(3600000)
+            localStorage.setItem('expireIn', JSON.stringify(new Date()))
+            this.userService.autoLogout(JSON.parse(localStorage['expireIn']))
             this.userService
               .getOwnProfile(localStorage.getItem('token'))
               .subscribe((res: any) => {

@@ -51,6 +51,7 @@
     >
       <app-header-cart *ngIf="isCartHovered"></app-header-cart>
       <fa-icon routerLink="/checkout" [icon]="faCartShopping"></fa-icon>
+      <div class="cart-badge"><span>{{totalQuantity}}</span></div>
       <span>Giỏ hàng</span>
     </button>
   </div>
