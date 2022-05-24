@@ -1,5 +1,30 @@
-<div class="address" [ngClass]="address.isDefault ? 'address--active' : ''" *ngFor="let address of addressList">
-    <span>{{address.fullName}}</span>
-    <span>{{address.phone}}</span>
-    <span>{{address.fullAddress}}</span>
+<div class="address-list" *ngIf="!error; else loginToContinue">
+  <ng-container *ngFor="let address of addressList">
+    <div
+      (click)="onSelected(address)"
+      class="address"
+      [ngClass]="selectedAddressId === address.id ? 'address--active' : ''"
+    >
+      <span class="full-name__span">{{ address.fullName }}</span>
+      <span class="phone__span">{{ address.phone }}</span>
+      <span class="address__span">{{ address.fullAddress }}</span>
+    </div>
+  </ng-container>
+  <div class="address address--add">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M12 4v16m8-8H4"
+        />
+      </svg>
+      <span>Thêm địa chỉ</span>
+  </div>
 </div>
+<ng-template #loginToContinue> </ng-template>

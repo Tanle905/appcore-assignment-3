@@ -1,14 +1,54 @@
 @import "../../../../shared/variables"
-    
-.address
-    border: 1px solid $light-gray
-    border-radius: 3px
-    width: 95%
-    height: 100px
+
+.address-list
     display: flex
-    flex-direction: column
-    padding: 10px
-    margin: 5px 0px
-.address--active
-    border: 2px solid $blue
-    border-radius: 3px
+    flex-wrap: wrap
+    justify-content: space-between   
+    .address
+        cursor: pointer
+        border: 1px solid $light-gray
+        border-radius: 3px
+        width: 45%
+        height: 100px
+        display: flex
+        flex-direction: column
+        padding: 10px
+        margin: 5px 0px
+        span
+            font-weight: 500
+            margin: 2px 0px
+        .full-name__span
+            font-weight: bold
+        .phone__span
+            font-size: 0.9rem
+        .address__span
+            display: -webkit-box
+            max-width: 100%
+            -webkit-line-clamp: 2
+            -webkit-box-orient: vertical
+            overflow: hidden
+            font-size: 0.8rem
+            color: $gray
+    .address--active
+        border: 2px solid $blue
+        border-radius: 3px
+    .address--add
+        display: flex
+        flex-direction: row
+        justify-content: center
+        border: 1px dashed $light-gray
+        &:hover
+            transform: translate(0px, -1px)
+            border-color: $blue
+            transition: all 200ms
+        svg
+            margin: auto 0px
+            width: 15px
+            height: 15px
+            margin-right: 5px
+            color: $gray
+        span
+            display: inline-block
+            margin: auto 0px
+            color: $gray
+            font: 500
